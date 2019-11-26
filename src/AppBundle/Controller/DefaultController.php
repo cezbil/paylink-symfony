@@ -62,6 +62,17 @@ class DefaultController extends Controller
             'fibonacciGenerator' => $fibonacciGenerator,
         ]);
     }
+
+    /**
+     * @Route("/uml", name="uml")
+     */
+    public function showUml(Request $request)
+    {
+          // render view for uml
+        return $this->render('uml/uml.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        ]);
+    }
     /**
      * @return array
      */
