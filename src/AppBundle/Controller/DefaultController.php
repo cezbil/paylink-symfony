@@ -51,6 +51,18 @@ class DefaultController extends Controller
         ]);
     }
     /**
+     * @Route("/fibonacci", name="fibonacci")
+     */
+    public function renderFibonacci(Request $request)
+    {
+        $fibonacciGenerator = $this->fibonacci(10);
+          // render view for fibonacci
+        return $this->render('fibonacci/fibonacci.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'fibonacciGenerator' => $fibonacciGenerator,
+        ]);
+    }
+    /**
      * @return array
      */
     private function generateFizzBuzzArray($counter = 20) {
@@ -81,5 +93,17 @@ class DefaultController extends Controller
         }
         return $fizzBuzzArray;
 
+    }
+
+    function fibonacci(int $q = null) {
+        $currentIteration = 1;
+        $previousIteration = 0;
+
+        for ($i = 0; $i < $q; $i++) {
+            yield $currentIteration;
+            $temporaryVar = $currentIteration;
+            $currentIteration = $previousIteration + $currentIteration;
+            $previousIteration = $temporaryVar;
+        }
     }
 }
