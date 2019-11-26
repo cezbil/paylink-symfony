@@ -7,6 +7,6 @@ to run this project please clone this repo and then:
 2. enter default parameters
 3. run php bin/console server:start
 
-thanks 
+Thanks 
 
 Cezary
